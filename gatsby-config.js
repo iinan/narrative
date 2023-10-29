@@ -33,9 +33,9 @@ exports.plugins = [
   {
     resolve: `gatsby-source-contentful`,
     options: {
-      spaceId: process.env.CONTENTFUL_SPACE_ID,
-      accessToken: process.env.CONTENTFUL_DELIVERY_API_KEY,
-      environment: process.env.CONTENTFUL_ENVIRONMENT,
+      spaceId: process.env.416e5w1d4ih6,
+      accessToken: process.env.S7hwctZWI58QDGdmIu4O3f7A2psu67FtbWtyn78avKQ,
+      environment: process.env.master,
     },
   },
 
