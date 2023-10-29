@@ -4,7 +4,7 @@ const proxy = require('http-proxy-middleware')
 
 exports.siteMetadata = {
   title: 'Narative',
-  siteUrl: 'https://narative.co',
+  siteUrl: 'https://xnarrative.netlify.app',
   pathPrefix: `/`,
 }
 
