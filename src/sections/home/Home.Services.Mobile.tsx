@@ -40,7 +40,7 @@ function HomeServicesMobile() {
   return (
     <StaticQuery
       query={imageQuery}
-      render={({ firstImage, secondImage, thirdImage }) => {
+      render={({ firstImage, secondImage, thirdImage } = {}) => {
         const images = [firstImage, secondImage, thirdImage]
         const progressOffset = { transform: `translateX(-${progress * 160}px)` }
 
@@ -76,7 +76,7 @@ function HomeServicesMobile() {
                       <Image style={progressOffset}>
                         <Media
                           style={startingOffset}
-                          src={images[index].childImageSharp.fluid}
+                          src={images[index] && images[index].childImageSharp && images[index].childImageSharp.fluid}
                         />
                       </Image>
                     </Card>

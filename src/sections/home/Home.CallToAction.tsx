@@ -33,7 +33,7 @@ function HomeCallToAction() {
   return (
     <StaticQuery
       query={imageQuery}
-      render={({ file }) => (
+      render={({ file } = {}) => (
         <Background>
           <IntersectionObserver
             render={({ visiblePercentage }) => (
@@ -72,7 +72,7 @@ function HomeCallToAction() {
                 </Nav>
                 <TextContainer>
                   <TextBackground
-                    background={file.childImageSharp.original.src}
+                    background={file && file.childImageSharp && file.childImageSharp.original && file.childImageSharp.original.src}
                     visiblePercentage={visiblePercentage}
                   >
                     <Text>

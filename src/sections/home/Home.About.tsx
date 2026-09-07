@@ -41,13 +41,15 @@ const imageQuery = null
 const HomeAbout = () => (
   <StaticQuery
     query={imageQuery}
-    render={({ glow }) => (
+    render={({ glow } = {}) => (
       <>
         <MobileContainer>
           <Slash />
-          <MediaContainer>
-            <Media critical src={glow.childImageSharp.fluid} />
-          </MediaContainer>
+          {glow && glow.childImageSharp && glow.childImageSharp.fluid && (
+            <MediaContainer>
+              <Media critical src={glow.childImageSharp.fluid} />
+            </MediaContainer>
+          )}
         </MobileContainer>
         <Gradient>
           <Grid narrow>
