@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
-import { Link, graphql, StaticQuery } from 'gatsby'
+import { Link } from 'gatsby'
 
 import Logo from '@components/Logo'
 import IntersectionObserver from '@components/IntersectionObserver'
@@ -18,8 +18,6 @@ const ctaLinks = [
   { to: '/contact', text: 'Contact' },
 ]
 
-const imageQuery = null
-
 /**
  * <HomeCallToAction />
  * - appearing navigation
@@ -31,10 +29,7 @@ function HomeCallToAction() {
   const { showContact, toggleContact } = useContext(ContactContext)
 
   return (
-    <StaticQuery
-      query={imageQuery}
-      render={({ file } = {}) => (
-        <Background>
+    <Background>
           <IntersectionObserver
             render={({ visiblePercentage }) => (
               <Frame narrow>
@@ -72,7 +67,7 @@ function HomeCallToAction() {
                 </Nav>
                 <TextContainer>
                   <TextBackground
-                    background={file && file.childImageSharp && file.childImageSharp.original && file.childImageSharp.original.src}
+                    background={undefined}
                     visiblePercentage={visiblePercentage}
                   >
                     <Text>
@@ -94,9 +89,7 @@ function HomeCallToAction() {
           <MediaQuery maxWidth="tablet">
             <Footer />
           </MediaQuery>
-        </Background>
-      )}
-    />
+    </Background>
   )
 }
 

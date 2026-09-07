@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { graphql, StaticQuery } from 'gatsby'
 import styled from 'styled-components'
 
 import Heading from '@components/Heading'
@@ -12,8 +11,6 @@ import mediaqueries from '@styles/media'
 import transitions from '@styles/transitions'
 import { Section } from '@components'
 import { startAnimation } from '@utils'
-
-const imageQuery = null
 
 function ArticlesHero() {
   const [animation, setAnimation] = useState('')
@@ -49,10 +46,7 @@ function ArticlesHero() {
   }, [current, imageLoaded, text])
 
   return (
-    <StaticQuery
-      query={imageQuery}
-      render={({ heroImage }) => (
-        <LayoutHeroMobile>
+    <LayoutHeroMobile>
           <HeroSection relative>
             <ContentContainer>
               <div />
@@ -70,11 +64,7 @@ function ArticlesHero() {
               <ScrollIndicator />
             </ContentContainer>
             <HeroImage>
-              <Media
-                critical
-                src={heroImage.childImageSharp.fluid}
-                onLoad={() => setImageLoaded(true)}
-              />
+              <div aria-hidden="true" />
               <HeroImageText imageLoaded={imageLoaded}>
                 Narative builds brands, websites and products for growth-minded
                 companies. We're a team with senior startup experience here to
@@ -82,9 +72,7 @@ function ArticlesHero() {
               </HeroImageText>
             </HeroImage>
           </HeroSection>
-        </LayoutHeroMobile>
-      )}
-    />
+    </LayoutHeroMobile>
   )
 }
 

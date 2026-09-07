@@ -41,15 +41,15 @@ const ArticleHero = ({ article }: { article: IArticleNode }) => {
                 <Header style={headerOffset}>
                   <HeroTitle>{article.title}</HeroTitle>
                   <HeroSubtitle>
-                    By {author.name}
-                    {author.title && ` , ${author.title}`}
+                    By {(author && author.name) || 'Narative'}
+                    {author && author.title && ` , ${author.title}`}
                   </HeroSubtitle>
                 </Header>
               </Section>
             </HeroContent>
             <RelativeSection>
               <ScrollIndicator mode="dark" disableScrollAnimation />
-              <ReadingTime>{article.readingTime.text}</ReadingTime>
+              <ReadingTime>{(article.readingTime && article.readingTime.text) || 'Read'}</ReadingTime>
             </RelativeSection>
             <Image>
               <Media critical src={article.hero.Article__Hero} />

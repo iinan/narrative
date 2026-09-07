@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { StaticQuery, graphql } from 'gatsby'
 
 import Section from '@components/Section'
 import Heading from '@components/Heading'
@@ -26,8 +25,6 @@ const aboutNarativeText = [
   <strong>Then we get straight to work</strong>.`,
 ]
 
-const imageQuery = null
-
 /**
  * <HomeAbout />
  *
@@ -39,18 +36,10 @@ const imageQuery = null
  * 2. Overlaying a fixed gradient to get the FadeIn to work nicely
  */
 const HomeAbout = () => (
-  <StaticQuery
-    query={imageQuery}
-    render={({ glow } = {}) => (
-      <>
-        <MobileContainer>
-          <Slash />
-          {glow && glow.childImageSharp && glow.childImageSharp.fluid && (
-            <MediaContainer>
-              <Media critical src={glow.childImageSharp.fluid} />
-            </MediaContainer>
-          )}
-        </MobileContainer>
+  <>
+    <MobileContainer>
+      <Slash />
+    </MobileContainer>
         <Gradient>
           <Grid narrow>
             <Sticky
@@ -83,8 +72,6 @@ const HomeAbout = () => (
           </Grid>
         </Gradient>
       </>
-    )}
-  />
 )
 
 export default HomeAbout
