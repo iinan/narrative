@@ -211,7 +211,7 @@ function HomeServices() {
     <>
       <StaticQuery
         query={imageQuery}
-        render={({ texture, first, second, third }) => (
+        render={({ texture, first, second, third } = {}) => (
           <HomeServicesDesktop>
             <Section>
               <IntersectionObserver
@@ -219,7 +219,7 @@ function HomeServices() {
                   return (
                     <animated.div style={animatedStyles}>
                       <HeadingBackground
-                        background={texture.childImageSharp.original.src}
+                        background={texture && texture.childImageSharp && texture.childImageSharp.original && texture.childImageSharp.original.src}
                         style={calcOpacity(entering, boundingClientRect.top)}
                       >
                         <LargeHeading ref={heading}>
@@ -258,15 +258,15 @@ function HomeServices() {
                   <Grid>
                     <ImageSlides>
                       <ImageSlide critical active={firstActive}>
-                        <Media src={first.childImageSharp.fluid} />
+                        <Media src={first && first.childImageSharp && first.childImageSharp.fluid} />
                         <Time />
                       </ImageSlide>
                       <ImageSlide active={secondActive}>
-                        <Media critical src={second.childImageSharp.fluid} />
+                        <Media critical src={second && second.childImageSharp && second.childImageSharp.fluid} />
                         <Code />
                       </ImageSlide>
                       <ImageSlide active={thirdActive}>
-                        <Media critical src={third.childImageSharp.fluid} />
+                        <Media critical src={third && third.childImageSharp && third.childImageSharp.fluid} />
                       </ImageSlide>
                     </ImageSlides>
                     <Column>

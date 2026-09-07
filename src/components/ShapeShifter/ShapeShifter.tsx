@@ -19,10 +19,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import throttle from 'lodash/throttle'
-import { StaticQuery, graphql } from 'gatsby'
 import { isSafari, isFireFox } from 'react-device-detect'
 
-import Media from '@components/Media/Media.Img'
 import mediaqueries from '@styles/media'
 
 // The SVG shapes and data required to properly morph and place them
@@ -63,8 +61,6 @@ let pressedKeys: {} = {}
  *
  * This avoids gradient banding as much as we can!
  */
-const query = null
-
 // The main component
 function ShapeShifter() {
   const [activeShape, setActiveShape] = useState(0)
@@ -552,15 +548,10 @@ function ShapeShifter() {
   }
 
   return (
-    <StaticQuery
-      query={query}
-      render={({ glowImage }) => (
         <Frame animate={animate}>
           <ShapesContainer>
             <Relative ref={rel} style={activeStyles}>
-              <ShapeGlow ref={glow} animate={animate}>
-                <Media src={glowImage.childImageSharp.fixed} />
-              </ShapeGlow>
+                <ShapeGlow ref={glow} animate={animate} />
               <ShapeContainer
                 style={activeStyles}
                 ref={shape}
@@ -599,8 +590,6 @@ function ShapeShifter() {
             </Mirror>
           </ShapesContainer>
         </Frame>
-      )}
-    />
   )
 }
 
