@@ -1,5 +1,3 @@
-'use strict'
+const { createPages } = require('./gatsby/createPages')
 
-exports.createPages = require('./gatsby/createPages')
-exports.onCreateWebpackConfig = require('./gatsby/onCreateWebpackConfig')
-exports.onPostBuild = require('./gatsby/onPostBuild')
+exports.createPages = createPages

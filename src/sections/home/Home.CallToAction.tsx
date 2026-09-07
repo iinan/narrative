@@ -18,17 +18,7 @@ const ctaLinks = [
   { to: '/contact', text: 'Contact' },
 ]
 
-const imageQuery = graphql`
-  query HomeCTAQuery {
-    file(name: { regex: "/waves-texture-1/" }) {
-      childImageSharp {
-        original {
-          src
-        }
-      }
-    }
-  }
-`
+const imageQuery = null
 
 /**
  * <HomeCallToAction />

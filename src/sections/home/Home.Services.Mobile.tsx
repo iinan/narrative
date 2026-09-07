@@ -11,31 +11,7 @@ import { services } from './Home.Services'
 import mediaqueries from '@styles/media'
 import { clamp } from '@utils'
 
-const imageQuery = graphql`
-  query SerivesMobileImageQuery {
-    firstImage: file(name: { regex: "/mobile-home-brand/" }) {
-      childImageSharp {
-        fluid(maxWidth: 440, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    secondImage: file(name: { regex: "/mobile-home-build/" }) {
-      childImageSharp {
-        fluid(maxWidth: 440, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    thirdImage: file(name: { regex: "/mobile-home-grow/" }) {
-      childImageSharp {
-        fluid(maxWidth: 440, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-  }
-`
+const imageQuery = null
 
 function HomeServicesMobile() {
   const element = React.createRef()

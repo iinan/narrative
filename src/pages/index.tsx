@@ -42,22 +42,3 @@ function IndexPage({ data, location }) {
 
 export default IndexPage
 
-export const pageQuery = graphql`
-  query HomePageQuery {
-    allContentfulPage(filter: { pageName: { eq: "Home" } }) {
-      edges {
-        node {
-          seo {
-            title
-            description
-            image {
-              file {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`

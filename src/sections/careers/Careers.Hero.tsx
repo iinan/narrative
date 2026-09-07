@@ -12,24 +12,7 @@ import mediaqueries from '@styles/media'
 import transitions from '@styles/transitions'
 import { startAnimation } from '@utils'
 
-const heroQuery = graphql`
-  query CareersHeroPageQuery {
-    heroTop: file(name: { regex: "/careers-hero-cable/" }) {
-      childImageSharp {
-        fluid(maxWidth: 322, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    heroBottom: file(name: { regex: "/careers-hero-bulb/" }) {
-      childImageSharp {
-        fluid(maxWidth: 767, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-  }
-`
+const heroQuery = null
 
 function CareersHero() {
   // Fade in the text as we do on all the headings

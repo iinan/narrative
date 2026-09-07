@@ -6,23 +6,7 @@ import SEO from '@components/SEO'
 
 import { IArticleNode } from '@typings'
 
-const PublicLogoQuery = graphql`
-  query ArticlePublicationQuery {
-    url: allContentfulHomePage {
-      edges {
-        node {
-          seo {
-            image {
-              file {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
+const PublicLogoQuery = null
 
 // An SEO bomb we want to keep. This is another standard that's worth setting up.
 export default ({ article, location }: { article: IArticleNode }) => (

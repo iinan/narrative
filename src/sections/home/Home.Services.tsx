@@ -51,38 +51,7 @@ export const services = [
   },
 ]
 
-const imageQuery = graphql`
-  query SerivesImageQuery {
-    texture: file(name: { regex: "/waves-texture-2/" }) {
-      childImageSharp {
-        original {
-          src
-        }
-      }
-    }
-    first: file(name: { regex: "/desktop-home-brand/" }) {
-      childImageSharp {
-        fluid(maxWidth: 787, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    second: file(name: { regex: "/desktop-home-build/" }) {
-      childImageSharp {
-        fluid(maxWidth: 787, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    third: file(name: { regex: "/desktop-home-grow/" }) {
-      childImageSharp {
-        fluid(maxWidth: 787, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-  }
-`
+const imageQuery = null
 
 const calculateActive = (progress: number) => (index: number): boolean => {
   const total = services.length

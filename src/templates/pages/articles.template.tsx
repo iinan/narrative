@@ -54,26 +54,6 @@ function ArticlesPage({ data, location, pageContext }) {
 
 export default ArticlesPage
 
-export const pageQuery = graphql`
-  query ArticlesPageQuery {
-    allContentfulPage(filter: { pageName: { eq: "Articles" } }) {
-      edges {
-        node {
-          seo {
-            title
-            description
-            image {
-              file {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
 const WhiteBackground = styled.div`
   position: relative;
   background: #fafafa;
