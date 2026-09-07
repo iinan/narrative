@@ -26,17 +26,7 @@ const aboutNarativeText = [
   <strong>Then we get straight to work</strong>.`,
 ]
 
-const imageQuery = graphql`
-  query ShapeImageQuery {
-    glow: file(name: { regex: "/mobile-glow/" }) {
-      childImageSharp {
-        fluid(maxWidth: 787, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-  }
-`
+const imageQuery = null
 
 /**
  * <HomeAbout />

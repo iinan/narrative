@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
 
 import { HorizontalScroll, IntersectionObserver } from '@components'
 import mediaqueries from '@styles/media'
@@ -96,7 +95,7 @@ class CareersImages extends Component {
                       viewed={this.state.viewed}
                       style={{ left: `${index * 36}rem` }}
                     >
-                      <Img fluid={image.node.childImageSharp.fluid} />
+                      <img src={image.node.childImageSharp.fluid.src} alt="Narative team" />
                     </ImageContainer>
                   ))}
                 </GalleryContainer>

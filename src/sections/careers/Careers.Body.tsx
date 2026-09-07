@@ -14,21 +14,7 @@ import mediaqueries from '@styles/media'
 import CareersRow from './Careers.Row'
 
 // Grabbing all the gallery images. Returns an Array[] of images
-const galleryQuery = graphql`
-  query CareersBodyQuery {
-    gallery: allFile(filter: { name: { regex: "/careers-gallery/" } }) {
-      edges {
-        node {
-          childImageSharp {
-            fluid(maxWidth: 960, quality: 100) {
-              ...GatsbyImageSharpFluid_withWebp_tracedSVG
-            }
-          }
-        }
-      }
-    }
-  }
-`
+const galleryQuery = null
 
 /**
  * Careers Body

@@ -63,17 +63,7 @@ let pressedKeys: {} = {}
  *
  * This avoids gradient banding as much as we can!
  */
-const query = graphql`
-  query ShapeShipfterQuery {
-    glowImage: file(name: { regex: "/glow@2x/" }) {
-      childImageSharp {
-        fixed(width: 375, height: 375, quality: 100) {
-          ...GatsbyImageSharpFixed_noBase64
-        }
-      }
-    }
-  }
-`
+const query = null
 
 // The main component
 function ShapeShifter() {

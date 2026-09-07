@@ -44,26 +44,6 @@ function NotFound({ data, location }) {
 
 export default NotFound
 
-export const pageQuery = graphql`
-  query NotFoundPageQuery {
-    allContentfulHomePage {
-      edges {
-        node {
-          seo {
-            title
-            description
-            image {
-              file {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
 const GridContainer = styled.div`
   z-index: 1;
   display: flex;

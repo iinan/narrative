@@ -36,22 +36,3 @@ function CareersPage({ data, location }) {
 
 export default CareersPage
 
-export const pageQuery = graphql`
-  query CareersPageQuery {
-    allContentfulPage(filter: { pageName: { eq: "Careers" } }) {
-      edges {
-        node {
-          seo {
-            title
-            description
-            image {
-              file {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`

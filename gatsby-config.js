@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 const proxy = require('http-proxy-middleware')
 
 exports.siteMetadata = {
@@ -10,10 +8,7 @@ exports.siteMetadata = {
 
 exports.plugins = [
   'gatsby-plugin-react-helmet',
-  `gatsby-image`,
   `gatsby-plugin-typescript`,
-  `gatsby-plugin-sharp`,
-  `gatsby-transformer-sharp`,
   `gatsby-transformer-remark`,
   'gatsby-plugin-netlify',
   'gatsby-plugin-netlify-cache',
@@ -28,27 +23,6 @@ exports.plugins = [
     options: {
       name: `assets`,
       path: `${__dirname}/src/assets/`,
-    },
-  },
-  {
-    resolve: `gatsby-source-contentful`,
-    options: {
-      spaceId: process.env.416e5w1d4ih6,
-      accessToken: process.env.S7hwctZWI58QDGdmIu4O3f7A2psu67FtbWtyn78avKQ,
-      environment: process.env.master,
-    },
-  },
-
-  {
-    resolve: 'gatsby-plugin-manifest',
-    options: {
-      name: 'Narative',
-      short_name: 'Narative',
-      start_url: '/',
-      background_color: '#111216',
-      theme_color: '#111216',
-      display: 'standalone',
-      icon: 'src/assets/favicon/favicon.png',
     },
   },
   {
@@ -72,10 +46,6 @@ exports.plugins = [
     },
   },
 
-  // These are our local plugins that can be found within ./plugins
-  'gatsby-transformer-enhance-contentful',
-  'gatsby-transformer-contentful-rich-text-html-renderer',
-  `gatsby-plugin-twitter`,
 ]
 
 // For lambda functions

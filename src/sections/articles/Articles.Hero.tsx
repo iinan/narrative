@@ -13,17 +13,7 @@ import transitions from '@styles/transitions'
 import { Section } from '@components'
 import { startAnimation } from '@utils'
 
-const imageQuery = graphql`
-  query ArticlesHeroQuery {
-    heroImage: file(name: { regex: "/articles-hero-typewriter/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1060, quality: 88) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-  }
-`
+const imageQuery = null
 
 function ArticlesHero() {
   const [animation, setAnimation] = useState('')

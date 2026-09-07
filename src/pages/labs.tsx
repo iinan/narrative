@@ -153,61 +153,6 @@ function LabsPage({ data, location }) {
 
 export default LabsPage
 
-export const pageQuery = graphql`
-  query LabsPageQuery {
-    allContentfulPage(filter: { pageName: { eq: "Labs" } }) {
-      edges {
-        node {
-          seo {
-            title
-            description
-            image {
-              file {
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-    hero: file(name: { regex: "/labs-hero-phone/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1060, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    heroBody: file(name: { regex: "/labs-floating-phone-body/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1060, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    heroScreen: file(name: { regex: "/labs-floating-phone-screen/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1060, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    needlBackground: file(name: { regex: "/needl-labs/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1140, maxHeight: 380, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-    feyBackground: file(name: { regex: "/fey-labs/" }) {
-      childImageSharp {
-        fluid(maxWidth: 1140, maxHeight: 380, quality: 100) {
-          ...GatsbyImageSharpFluid_noBase64
-        }
-      }
-    }
-  }
-`
-
 const HeroSection = styled(Section)`
   display: flex;
   justify-content: space-between;
