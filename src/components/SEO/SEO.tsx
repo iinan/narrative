@@ -39,9 +39,10 @@ interface HelmetProps {
 const seoURL = path => `https://narative.co${path}`
 
 // Twitter requires https to prepend any paths.
-const addHttps = path => {
+const addHttps = (path?: string) => {
+  if (!path) return undefined
   if (path.substring(0, 5) === 'https') return path
-  return `https:${path}`
+  return path.startsWith('//') ? `https:${path}` : path
 }
 
 const seoDescription =

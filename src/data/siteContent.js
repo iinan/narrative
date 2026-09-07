@@ -6,6 +6,8 @@ const seo = {
   image: metaImage,
 }
 
+const careers = []
+
 const articles = [
   {
     id: 'local-article-1',
@@ -26,6 +28,7 @@ const articles = [
 
 module.exports = {
   seo,
+  careers,
   pages: {
     Home: { seo },
     Articles: { seo },

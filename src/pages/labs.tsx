@@ -21,16 +21,16 @@ import LabsPreview from '../sections/labs/Labs.Preview'
  * to start a new file to handle things neater!
  */
 
-function LabsPage({ data, location }) {
-  const {
-    allContentfulPage,
-    hero,
-    heroBody,
-    heroScreen,
-    needlBackground,
-    feyBackground,
-  } = data
-  const { seo } = allContentfulPage.edges[0].node
+import { seo } from '../data/siteContent'
+
+const emptyImage = { childImageSharp: { fluid: {} } }
+
+function LabsPage({ location }) {
+  const hero = emptyImage
+  const heroBody = emptyImage
+  const heroScreen = emptyImage
+  const needlBackground = emptyImage
+  const feyBackground = emptyImage
   const pageBackground = 'linear-gradient(180deg, #08080b 50%, #191D23 100%)'
   const navConfig = {
     fixed: true,
@@ -99,7 +99,7 @@ function LabsPage({ data, location }) {
         <SEO
           title={seo.title}
           description={seo.description}
-          image={seo.image.file.url}
+          image={seo.image}
           pathname={location.pathname}
         />
         <LayoutHeroMobile>

@@ -8,8 +8,10 @@ import Footer from '@components/Navigation/Navigation.Footer'
 import CareersHero from '../sections/careers/Careers.Hero'
 import CareersBody from '../sections/careers/Careers.Body'
 
-function CareersPage({ data, location }) {
-  const contentful = data.allContentfulPage.edges[0].node
+import { seo, careers } from '../data/siteContent'
+
+function CareersPage({ location }) {
+  const contentful = { seo, careers }
   const pageBackground =
     'linear-gradient(rgb(9, 10, 12),rgb(17, 18, 22) 60%,#1a1e24 100%)'
 
@@ -24,7 +26,7 @@ function CareersPage({ data, location }) {
       <SEO
         title={contentful.seo.title}
         description={contentful.seo.description}
-        image={contentful.seo.image.file.url}
+        image={contentful.seo.image}
         pathname={location.pathname}
       />
       <CareersHero />
