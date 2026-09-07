@@ -14,7 +14,7 @@ import mediaqueries from '@styles/media'
 import CareersRow from './Careers.Row'
 
 // Grabbing all the gallery images. Returns an Array[] of images
-const galleryQuery = null
+const galleryQuery = graphql`query CareersGalleryQuery { site { id } }`
 
 /**
  * Careers Body
@@ -28,7 +28,7 @@ function CareersBody() {
   return (
     <StaticQuery
       query={galleryQuery}
-      render={({ gallery }) => (
+      render={({ gallery = { edges: [] } } = {}) => (
         <>
           <CareersRow header="Why Narative">
             <SectionCopy maxWidth="69rem">

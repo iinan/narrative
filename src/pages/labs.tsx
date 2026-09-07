@@ -23,7 +23,7 @@ import LabsPreview from '../sections/labs/Labs.Preview'
 
 import { seo } from '../data/siteContent'
 
-const emptyImage = { childImageSharp: { fluid: {} } }
+const emptyImage = { childImageSharp: { fluid: null } }
 
 function LabsPage({ location }) {
   const hero = emptyImage
@@ -121,24 +121,30 @@ function LabsPage({ location }) {
             </ContentContainer>
 
             <HeroImage>
-              <Media
-                critical
-                onLoad={() => setShowScreen(true)}
-                src={heroBody.childImageSharp.fluid}
-              />
+              {heroBody.childImageSharp.fluid && (
+                <Media
+                  critical
+                  onLoad={() => setShowScreen(true)}
+                  src={heroBody.childImageSharp.fluid}
+                />
+              )}
               <div
                 style={{
                   opacity: showScreen ? 1 : 0,
                   transition: 'opacity 1s ease 0.5s',
                 }}
               >
-                <Media critical src={heroScreen.childImageSharp.fluid} />
+                {heroScreen.childImageSharp.fluid && (
+                  <Media critical src={heroScreen.childImageSharp.fluid} />
+                )}
               </div>
             </HeroImage>
           </HeroSection>
         </LayoutHeroMobile>
         <HeroImageMobile>
-          <Media critical src={hero.childImageSharp.fluid} />
+          {hero.childImageSharp.fluid && (
+            <Media critical src={hero.childImageSharp.fluid} />
+          )}
         </HeroImageMobile>
         <Section narrow>
           {products.map(product => (

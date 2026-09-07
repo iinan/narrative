@@ -11,7 +11,7 @@ import { services } from './Home.Services'
 import mediaqueries from '@styles/media'
 import { clamp } from '@utils'
 
-const imageQuery = null
+const imageQuery = graphql`query HomeServicesMobileQuery { site { id } }`
 
 function HomeServicesMobile() {
   const element = React.createRef()
@@ -20,13 +20,16 @@ function HomeServicesMobile() {
   useEffect(() => {
     const $el = element.current
 
+    if (!$el) return undefined
+
     const handleScroll = () => {
       const maxOffset = $el.scrollWidth - $el.clientWidth
-      const position = clamp($el.scrollLeft / maxOffset, 0, 100)
+      const position = maxOffset > 0 ? clamp($el.scrollLeft / maxOffset, 0, 1) : 0
       setProgress(position)
     }
 
     $el.addEventListener('scroll', handleScroll)
+    handleScroll()
 
     return () => {
       $el.removeEventListener('scroll', handleScroll)

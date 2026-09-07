@@ -35,7 +35,7 @@ class CareersImages extends Component {
 
   handleNextClick = () => {
     if (
-      this.state.activeIndex === this.props.images.length / 2 - 1 ||
+      this.state.activeIndex === Math.max(0, Math.ceil(images.length / 2) - 1) ||
       this.state.disabled
     ) {
       return
@@ -68,6 +68,7 @@ class CareersImages extends Component {
 
   render() {
     const { activeIndex } = this.state
+    const images = Array.isArray(this.props.images) ? this.props.images : []
     const offset = activeIndex * 72 * -1
 
     return (
@@ -75,18 +76,11 @@ class CareersImages extends Component {
         <CareersImagesContainer>
           <IntersectionObserver
             render={({ visiblePercentage }) => {
-              if (visiblePercentage > 60 && !this.state.inView) {
-                this.setState({ inView: true })
-                setTimeout(() => {
-                  this.setState({ viewed: true })
-                }, 1000)
-              }
-
               return (
                 <GalleryContainer
                   style={{ transform: `translateX(${offset}rem)` }}
                 >
-                  {this.props.images.map((image, index) => (
+                  {images.map((image, index) => (
                     <ImageContainer
                       key={image.node.childImageSharp.fluid.src}
                       index={index}
@@ -110,7 +104,7 @@ class CareersImages extends Component {
             <ChevronLeft />
           </GalleryControl>
           <GalleryControl
-            disabled={activeIndex === this.props.images.length / 2 - 1}
+            disabled={activeIndex === Math.max(0, Math.ceil(images.length / 2) - 1)}
             onClick={this.handleNextClick}
             right
           >

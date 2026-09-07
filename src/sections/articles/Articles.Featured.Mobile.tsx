@@ -23,7 +23,7 @@ export default ArticlesFeaturedMobile
 const GridItem = ({ article }) => {
   if (!article) return null
 
-  const hasOverflow = narrow && article.title.length > 35
+  const hasOverflow = article.title.length > 35
 
   return (
     <ArticleLink to={`/articles/${article.slug}`}>
@@ -35,10 +35,10 @@ const GridItem = ({ article }) => {
         <Title dark hasOverflow={hasOverflow}>
           {article.title}
         </Title>
-        <Excerpt narrow={narrow} hasOverflow={hasOverflow}>
+        <Excerpt hasOverflow={hasOverflow}>
           {article.excerpt}
         </Excerpt>
-        <TimeToRead>{article.readingTime.text}</TimeToRead>
+        <TimeToRead>{(article.readingTime && article.readingTime.text) || 'Read'}</TimeToRead>
       </Item>
     </ArticleLink>
   )

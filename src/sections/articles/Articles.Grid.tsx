@@ -77,7 +77,7 @@ const GridItem = ({ article, narrow }) => {
         <Excerpt narrow={narrow} hasOverflow={hasOverflow}>
           {article.excerpt}
         </Excerpt>
-        <TimeToRead>{article.readingTime.text}</TimeToRead>
+        <TimeToRead>{(article.readingTime && article.readingTime.text) || 'Read'}</TimeToRead>
       </Item>
     </ArticleLink>
   )

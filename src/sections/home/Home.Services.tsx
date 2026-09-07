@@ -51,8 +51,6 @@ export const services = [
   },
 ]
 
-const imageQuery = null
-
 const calculateActive = (progress: number) => (index: number): boolean => {
   const total = services.length
   const nextThreshold = ((100 / total) * (index + 1)) / 100
@@ -209,8 +207,9 @@ function HomeServices() {
 
   return (
     <>
-      <StaticQuery
-        query={imageQuery}
+  <StaticQuery
+  query={graphql`query HomeServicesQuery { site { id } }`}
+
         render={({ texture, first, second, third } = {}) => (
           <HomeServicesDesktop>
             <Section>

@@ -1,26 +1,18 @@
 import React from 'react'
-import { graphql, StaticQuery } from 'gatsby'
 
 import { MicrodataBreadcrumb } from '@components/Media'
 import SEO from '@components/SEO'
 
 import { IArticleNode } from '@typings'
 
-const PublicLogoQuery = null
-
 // An SEO bomb we want to keep. This is another standard that's worth setting up.
-export default ({ article, location }: { article: IArticleNode }) => (
-  <StaticQuery
-    query={PublicLogoQuery}
-    render={({ url: { edges } }) => (
-      <Microdata
-        article={article}
-        publicationLogo={edges[0].node.seo.image.file.url}
-        location={location}
-        sectionName={article.title}
-        sectionUrl={location.href}
-      />
-    )}
+export default ({ article, location }: { article: IArticleNode; location: Location }) => (
+  <Microdata
+    article={article}
+    publicationLogo="/icons/icon-512x512.png"
+    location={location}
+    sectionName={article.title}
+    sectionUrl={location.href}
   />
 )
 
@@ -47,14 +39,10 @@ const Microdata = ({
   sectionName: string
   sectionUrl: string
 }) => {
-  let isoDateStr
-
-  try {
-    isoDateStr = new Date(postDate!).toISOString()
-  } catch (error) {
-    // Now all browsers can parse our date string. That's fine. The crawler can
-    console.warn(error)
-  }
+  const parsedDate = postDate ? new Date(postDate) : null
+  const isoDateStr = parsedDate && !Number.isNaN(parsedDate.getTime())
+    ? parsedDate.toISOString()
+    : undefined
 
   return (
     <>
@@ -70,10 +58,10 @@ const Microdata = ({
       <SEO
         title={title}
         description={excerpt}
-        image={backgroundImage.seo.src}
+        image={backgroundImage && backgroundImage.seo ? backgroundImage.seo.src : undefined}
         canonical={canonical}
         pathname={path}
-        readingTime={readingTime.text}
+        readingTime={(readingTime && readingTime.text) || 'Read'}
         published={isoDateStr}
       >
         <script type="application/ld+json">
@@ -86,7 +74,7 @@ const Microdata = ({
               "@id": "${location.href}"
             },
             "headline": "${title}",
-            "image": "${hero.Article__Hero.src}",
+            "image": "${hero && hero.Article__Hero ? hero.Article__Hero.src : ''}",
             "datePublished": "${isoDateStr}",
             "dateModified": "${isoDateStr}",
             "author": {

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { graphql, StaticQuery } from 'gatsby'
 import styled, { css, keyframes } from 'styled-components'
 
 import { Section, Heading } from '@components'
@@ -11,8 +10,6 @@ import Pill from '@components/Pill'
 import mediaqueries from '@styles/media'
 import transitions from '@styles/transitions'
 import { startAnimation } from '@utils'
-
-const heroQuery = null
 
 function CareersHero() {
   // Fade in the text as we do on all the headings
@@ -28,10 +25,7 @@ function CareersHero() {
   }, [])
 
   return (
-    <StaticQuery
-      query={heroQuery}
-      render={({ heroTop, heroBottom }) => (
-        <>
+    <>
           <LayoutHeroMobile>
             <>
               <Section>
@@ -52,13 +46,12 @@ function CareersHero() {
                   </LeftContainer>
                   <ImageContainer desktop>
                     <HeroImageTop>
-                      <Media critical src={heroTop.childImageSharp.fluid} />
+                      <div aria-hidden="true" />
                     </HeroImageTop>
                     <HeroImageBottom start={animateBulb}>
                       <Media
                         critical
                         onLoad={() => setBulbAnimation(true)}
-                        src={heroBottom.childImageSharp.fluid}
                       />
                     </HeroImageBottom>
                   </ImageContainer>
@@ -78,22 +71,16 @@ function CareersHero() {
           <Section hideOnDesktop>
             <ImageContainer>
               <HeroImageTop>
-                <Media critical src={heroTop.childImageSharp.fluid} />
+                <div aria-hidden="true" />
               </HeroImageTop>
               <HeroImageBottom>
-                <Media
-                  critical
-                  src={heroBottom.childImageSharp.fluid}
-                  onLoad={() => setBulbAnimation(true)}
-                />
+                  <div aria-hidden="true" />
               </HeroImageBottom>
             </ImageContainer>
           </Section>
 
           <Spacer />
-        </>
-      )}
-    />
+    </>
   )
 }
 
