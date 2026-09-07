@@ -70,7 +70,6 @@ class ContactPage extends Component<{}, { animation: string }> {
           <SEO
             title="Contact"
             pathname={this.props.location.pathname}
-            image={this.props.data.contactMeta.childImageSharp.fixed.src}
           />
           <FixedElement>
             <Section>

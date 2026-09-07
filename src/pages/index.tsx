@@ -13,8 +13,10 @@ import HomeServices from '../sections/home/Home.Services'
 /**
  * The home page of Narative.co!
  */
-function IndexPage({ data, location }) {
-  const contentful = data.allContentfulPage.edges[0].node
+import { seo } from '../data/siteContent'
+
+function IndexPage({ location }) {
+  const contentful = { seo }
   const navConfig = {
     offset: true,
     fixed: true,
@@ -27,7 +29,7 @@ function IndexPage({ data, location }) {
         <SEO
           title={contentful.seo.title}
           description={contentful.seo.description}
-          image={contentful.seo.image.file.url}
+          image={contentful.seo.image}
           pathname={location.pathname}
         />
         <HomeHero />

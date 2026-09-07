@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { StaticQuery, graphql } from 'gatsby'
-
 import { ButtonArrow, CopyToClipboard } from '@components'
+import { careers } from '../../data/siteContent'
 import mediaqueries from '@styles/media'
 
 const fadein = keyframes`
@@ -22,84 +21,48 @@ function CareersAccordian() {
     return setOpenRowIndex(index)
   }
 
+  const activeCareers = careers.filter(career => career.active)
+
+  if (activeCareers.length === 0) {
+    return (
+      <AccordianContainer empty>
+        <AccordianCareersEmail copied={copied}>
+          <span style={{ display: copied ? 'none' : 'inline', maxWidth: '61rem' }}>
+            There are currently no available positions. But if you believe you have something unique to bring to the team, get in touch at{' '}
+            <a href="mailto:careers@narative.co">careers@narative.co</a>.
+            <HideOnMobile> We love meeting new people!</HideOnMobile>
+          </span>
+          <button onClick={() => setCopied(true)} style={{ justifySelf: 'flex-end' }}>
+            <CopyToClipboard copyOnClick="careers@narative.co" />
+          </button>
+        </AccordianCareersEmail>
+      </AccordianContainer>
+    )
+  }
+
   return (
-    <StaticQuery
-      query={graphql`
-        query HeadingQuery {
-          allContentfulCareer(filter: { active: { eq: true } }) {
-            edges {
-              node {
-                childContentfulCareerDescriptionTextNode {
-                  childMarkdownRemark {
-                    html
-                  }
-                }
-                title
-                location
-              }
-            }
-          }
-        }
-      `}
-      render={({ allContentfulCareer }) => {
-        const careers = allContentfulCareer && allContentfulCareer.edges
-
-        if (!careers || careers.length === 0) {
-          return (
-            <AccordianContainer empty>
-              <AccordianCareersEmail copied={copied}>
-                <span
-                  style={{
-                    display: copied ? 'none' : 'inline',
-                    maxWidth: '61rem',
-                  }}
-                >
-                  There are currently no available positions. But if you believe
-                  you have something unique to bring to the team, get in touch
-                  at{' '}
-                  <a href="mailto:careers@narative.co">careers@narative.co</a>.
-                  <HideOnMobile> We love meeting new people!</HideOnMobile>
-                </span>
-                <button
-                  onClick={() => setCopied(true)}
-                  style={{ justifySelf: 'flex-end' }}
-                >
-                  <CopyToClipboard copyOnClick="careers@narative.co" />
-                </button>
-              </AccordianCareersEmail>
-            </AccordianContainer>
-          )
-        }
-
-        return (
-          <AccordianContainer>
-            <AccordianList>
-              {careers.map(({ node }, index) => (
-                <CareersAccordianItem
-                  key={node.title}
-                  handleIndexOpen={handleIndexOpen}
-                  career={node}
-                  index={index}
-                  isOpen={openRowIndex === index}
-                />
-              ))}
-            </AccordianList>
-            <AccordianCareersEmail copied={copied}>
-              <span style={{ display: copied ? 'none' : 'inline' }}>
-                Don't see a position you're looking for? Send us a message to{' '}
-                <a href="mailto:careers@narative.co">careers@narative.co</a>
-              </span>
-              <div
-                onClick={() => setCopied(true)}
-                style={{ justifySelf: 'flex-end' }}
-              >
-                <CopyToClipboard copyOnClick="careers@narative.co" />
-              </div>
-            </AccordianCareersEmail>
-          </AccordianContainer>
-        )
-      }}
-    />
+    <AccordianContainer>
+      <AccordianList>
+        {activeCareers.map((career, index) => (
+          <CareersAccordianItem
+            key={career.title}
+            handleIndexOpen={handleIndexOpen}
+            career={career}
+            index={index}
+            isOpen={openRowIndex === index}
+          />
+        ))}
+      </AccordianList>
+      <AccordianCareersEmail copied={copied}>
+        <span style={{ display: copied ? 'none' : 'inline' }}>
+          Don&apos;t see a position you&apos;re looking for? Send us a message to{' '}
+          <a href="mailto:careers@narative.co">careers@narative.co</a>
+        </span>
+        <div onClick={() => setCopied(true)} style={{ justifySelf: 'flex-end' }}>
+          <CopyToClipboard copyOnClick="careers@narative.co" />
+        </div>
+      </AccordianCareersEmail>
+    </AccordianContainer>
   )
 }
 
@@ -111,8 +74,8 @@ const CareersAccordianItem = ({
   index,
   isOpen,
 }: {
-  career: { title: string; location: string }
-  handleIndexOpen: () => {}
+  career: { title: string; location: string; description?: string }
+  handleIndexOpen: (index: number) => void
   index: number
   isOpen: boolean
 }) => {

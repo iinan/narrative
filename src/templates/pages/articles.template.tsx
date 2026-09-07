@@ -1,5 +1,4 @@
 import React from 'react'
-import { graphql } from 'gatsby'
 import styled from 'styled-components'
 
 import Footer from '@components/Navigation/Navigation.Footer'
@@ -10,6 +9,7 @@ import Layout from '@components/Layout'
 import ArticlesHero from '../../sections/articles/Articles.Hero'
 import ArticlesGrid from '../../sections/articles/Articles.Grid'
 import ArticlesFeatured from '../../sections/articles/Articles.Featured'
+import { seo } from '../../data/siteContent'
 
 /**
  * Narative.co/articles
@@ -19,8 +19,7 @@ import ArticlesFeatured from '../../sections/articles/Articles.Featured'
  * using it in the createPages lifecycle event
  */
 
-function ArticlesPage({ data, location, pageContext }) {
-  const { seo } = data.allContentfulPage.edges[0].node
+function ArticlesPage({ location, pageContext }) {
   const articles = pageContext.group
   const featured = pageContext.additionalContext.featured[0]
 
@@ -36,7 +35,7 @@ function ArticlesPage({ data, location, pageContext }) {
         <SEO
           title={seo.title}
           description={seo.description}
-          image={seo.image.file.url}
+          image={seo.image}
           pathname={location.pathname}
         />
         <ArticlesHero />
